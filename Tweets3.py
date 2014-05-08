@@ -1,6 +1,7 @@
 import sys
 import tweepy
 import json
+import pymongo
 
 consumer_key="Uyk7A893bypMmcpdWMSvB6VbZ"
 consumer_secret="2Ml8ZkhmGllbeVSu98KnHtVpNmHCIXGaKQObVTXtBwwwDPmOHU"
@@ -13,11 +14,22 @@ api = tweepy.API(auth)
 ### keywords for the public stream
 #keyword = "at", "the"
 ### initialize blank list to contain tweets
-#tweets = []
+tweets = []
 ### file name that you want to open is the second argument
-#f = open('today.txt', 'a')
+file = open('8may.json', 'a')
 
 class CustomStreamListener(tweepy.StreamListener):
+    def __init__(self, api):
+        self.api = api
+        super(tweepy.StreamListener, self).__init__()
+
+        self.file = tweets
+
+    def on_data(self, tweet):
+        self.file.append(json.loads(tweet))
+        print tweet
+        file.write(str(tweet))
+
     def on_status(self, status):
         print status.text
 
@@ -29,6 +41,6 @@ class CustomStreamListener(tweepy.StreamListener):
         print >> sys.stderr, 'Timeout...'
         return True # Don't kill the stream
 
-sapi = tweepy.streaming.Stream(auth, CustomStreamListener())
-sapi.filter(track=['Sony'])
+sapi = tweepy.streaming.Stream(auth, CustomStreamListener(api))
+sapi.filter(track=["Sony", "sony", "Xperia", "xperia", "PS4", "ps4"])
 

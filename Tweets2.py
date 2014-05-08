@@ -11,7 +11,7 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 ### keywords for the public stream
-keyword = "at", "the"
+keyword = "iPhone", "Samsung", "HTC", "Sony", "Blackberry"
 ### initialize blank list to contain tweets
 tweets = []
 ### file name that you want to open is the second argument
@@ -26,7 +26,7 @@ class CustomStreamListener(tweepy.StreamListener):
             if word in status.text.lower():
                 print status.text
                 # this is for writing the tweets into the txt file
-                # f.write(str(info))
+                f.write(str(info))
                 try:
                     tweets.append(info)
                 except:
