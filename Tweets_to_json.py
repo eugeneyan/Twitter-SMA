@@ -1,7 +1,6 @@
 import sys
 import tweepy
 import json
-import pymongo
 
 consumer_key=" "
 consumer_secret=" "
@@ -14,22 +13,19 @@ api = tweepy.API(auth)
 # initialize blank list to contain tweets
 tweets = []
 # file name that you want to open is the second argument
-file = open('8may.json', 'a')
+save_file = open('9may.json', 'a')
 
 class CustomStreamListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
         super(tweepy.StreamListener, self).__init__()
 
-        self.file = tweets
+        self.save_file = tweets
 
     def on_data(self, tweet):
-        self.file.append(json.loads(tweet))
+        self.save_file.append(json.loads(tweet))
         print tweet
-        file.write(str(tweet))
-
-    def on_status(self, status):
-        print status.text
+        save_file.write(str(tweet))
 
     def on_error(self, status_code):
         print >> sys.stderr, 'Encountered error with status code:', status_code

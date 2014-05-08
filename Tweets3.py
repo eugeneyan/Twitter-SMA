@@ -1,7 +1,6 @@
 import sys
 import tweepy
 import json
-import pymongo
 
 consumer_key=" "
 consumer_secret=" "
@@ -29,6 +28,9 @@ class CustomStreamListener(tweepy.StreamListener):
         self.file.append(json.loads(tweet))
         print tweet
         file.write(str(tweet))
+
+    def on_status(self, status):
+        print status.text
 
     def on_status(self, status):
         print status.text
