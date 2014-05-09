@@ -1,29 +1,25 @@
 import sys
 import tweepy
 import json
-
-consumer_key=" "
-consumer_secret=" "
-access_key = " "
-access_secret = " "
+import os
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
-# initialize blank list to contain tweets
-tweets = []
-# file name that you want to open is the second argument
-save_file = open('9may.json', 'a')
+# directory that you want to save the json file
+os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
+# name of json file you want to create/open and append json to
+save_file = open("11may.json", 'a')
 
 class CustomStreamListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
         super(tweepy.StreamListener, self).__init__()
 
-        self.save_file = tweets
+        self.list_of_tweets = []
 
     def on_data(self, tweet):
-        self.save_file.append(json.loads(tweet))
+##        self.list_of_tweets.append(json.loads(tweet))
         print tweet
         save_file.write(str(tweet))
 
@@ -36,5 +32,5 @@ class CustomStreamListener(tweepy.StreamListener):
         return True # Don't kill the stream
 
 sapi = tweepy.streaming.Stream(auth, CustomStreamListener(api))
-sapi.filter(track=["Sony", "sony", "Xperia", "xperia", "PS4", "ps4"])
+sapi.filter(track=["Sony", "Xperia", "iPhone", "Apple", "Samsung", "s5", "note 3" "HTC", "Blackberry", "q5", "q10", "z10"])
 

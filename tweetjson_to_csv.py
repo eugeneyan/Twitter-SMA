@@ -35,7 +35,9 @@ user_friends_count = []
 user_statuses_count = []
 # returns free form text; not sure why it only returns numerics
 user_locations = []
-out = open("tweets.csv", "w")
+
+# csv file that you want to save to
+out = open("8may.csv", "w")
 
 # change argument to the file you want to open
 for line in open("8may.json"):
@@ -75,8 +77,6 @@ for row in rows:
     csv.writerow(values)
 
 out.close()
-
-
 
 print "json to csv conversion complete"
     
