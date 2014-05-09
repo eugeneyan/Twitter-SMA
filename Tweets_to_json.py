@@ -32,5 +32,5 @@ class CustomStreamListener(tweepy.StreamListener):
         return True # Don't kill the stream
 
 sapi = tweepy.streaming.Stream(auth, CustomStreamListener(api))
-sapi.filter(track=["Sony", "Xperia", "iPhone", "Apple", "Samsung", "s5", "note 3" "HTC", "Blackberry", "q5", "q10", "z10"])
+sapi.filter(track=["Sony", "Xperia", "iPhone", "Apple", "Samsung", "s5", "note 3" "HTC", "Blackberry", "q5", "q10", "z10", "Nokia", "Lumia"])
 
