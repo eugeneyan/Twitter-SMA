@@ -17,17 +17,17 @@ tweets = []
 f = open('today.txt', 'a')
 # keywords to filter on
 #keyword = ["Sony", "sony", "Xperia", "xperia", "Bravia", "bravia", "PS4", "ps4", "PS3", "ps3", "Playstation", "playstation", "Cyber", "cyber", "Vaio", "vaio", "PSP", "psp", "Vita", "vita", "Ericsson", "ericsson", "X10", "x10"]
-keyword = ["at", "twitter", "linkedin", "sony", "Sony"]
-patterns = [r'\b%s\b' % re.escape(s.strip()) for s in keyword]
-there = re.compile('|'.join(patterns))
+# keyword = ["at", "twitter", "linkedin", "sony", "Sony"]
+# patterns = [r'\b%s\b' % re.escape(s.strip()) for s in keyword]
+# there = re.compile('|'.join(patterns))
 
 class CustomStreamListener(tweepy.StreamListener):
     global tweets
     def on_status(self, status):
-        ### info that you want to capture
-        info = status.id, status.text, status.created_at, status.place, status.user, status.in_reply_to_screen_name, status.in_reply_to_status_id 
-        if there.search(status.text.lower()):
-            print status.text             
+        # ### info that you want to capture
+        # info = status.id, status.text, status.created_at, status.place, status.user, status.in_reply_to_screen_name, status.in_reply_to_status_id 
+        # if there.search(status.text.lower()):
+        print status.text             
 
     def on_error(self, status_code):
         print >> sys.stderr, 'Encountered error with status code:', status_code

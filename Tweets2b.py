@@ -16,8 +16,8 @@ tweets = []
 # file name that you want to open is the second argument
 f = open('today.txt', 'a')
 # keywords to filter on
-#keyword = ["Sony", "sony", "Xperia", "xperia", "Bravia", "bravia", "PS4", "ps4", "PS3", "ps3", "Playstation", "playstation", "Cyber", "cyber", "Vaio", "vaio", "PSP", "psp", "Vita", "vita", "Ericsson", "ericsson", "X10", "x10"]
-keyword = ["at", "twitter", "linkedin", "sony", "Sony"]
+keyword = ["Sony", "sony", "Xperia", "xperia", "Bravia", "bravia", "PS4", "ps4", "PS3", "ps3", "Playstation", "playstation", "Cyber", "cyber", "Vaio", "vaio", "PSP", "psp", "Vita", "vita", "Ericsson", "ericsson", "X10", "x10"]
+# keyword = ["at", "twitter", "linkedin", "sony", "Sony"]
 patterns = [r'\b%s\b' % re.escape(s.strip()) for s in keyword]
 there = re.compile('|'.join(patterns))
 
