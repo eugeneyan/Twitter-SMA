@@ -3,23 +3,16 @@ import tweepy
 import json
 import os
 
-<<<<<<< HEAD
-consumer_key="Uyk7A893bypMmcpdWMSvB6VbZ"
-consumer_secret="2Ml8ZkhmGllbeVSu98KnHtVpNmHCIXGaKQObVTXtBwwwDPmOHU"
-access_key = "35109534-sPwWPITGOsKkFTKPhOwXqiRkWAb55QWgNrBtWURiC"
-access_secret = "8AZWXWYDO1qaCSc2lltxGOPZV3OKpMdY5PzevBj9n5lpm"
-=======
 consumer_key=""
 consumer_secret=""
 access_key = ""
 access_secret = ""
->>>>>>> a2a56178c919ef3607acdb1274c5192e2cb5b59e
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 # directory that you want to save the json file
-os.chdir("C:\Users\Desktop\json_files")
+# os.chdir("C:\Users\Desktop\json_files")
 # name of json file you want to create/open and append json to
 save_file = open("12may.json", 'a')
 
@@ -31,13 +24,10 @@ class CustomStreamListener(tweepy.StreamListener):
         # self.list_of_tweets = []
         
     def on_data(self, tweet):
-<<<<<<< HEAD
-        # self.list_of_tweets.append(json.loads(tweet))
-        # print tweet
-=======
         print tweet 
->>>>>>> a2a56178c919ef3607acdb1274c5192e2cb5b59e
         save_file.write(str(tweet))
+
+        # self.list_of_tweets.append(json.loads(tweet))
 
     def on_error(self, status_code):
         print >> sys.stderr, 'Encountered error with status code:', status_code
