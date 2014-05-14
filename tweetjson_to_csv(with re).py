@@ -2,7 +2,6 @@ import re
 import os
 import json
 from csv import writer
-from contextlib import contextmanager
 
 # global variable to store tweets in json
 tweets = []
@@ -43,7 +42,7 @@ os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 
 # csv file that you want to save to
 ## change this to the file you want to save
-out = open("12mayb.csv", "ab")
+out = open("test2.csv", "ab")
 
 # json file list
 ## change filenames to the files you want to open
@@ -58,9 +57,9 @@ keywords = ["samsung", "samsung's", "s4", "s4's", "s5", "s5's", "note 3", "note 
 for file in open_files:
     for line in file:
         # only process lines that are not empty after r.strip
-        if line.rstrip():  # line is not empty after r.strip
+        if line.rstrip():  # line is not empty after r.strip; same as if line.rstrip() == True
             try:
-                # condition for searching through tweet["text"] with keywords
+                # condition for searching through each line with keywords
                 if re.findall(r'\b(%s)\b' % '|'.join(keywords), str(line).lower()):
                     tweets.append(json.loads(line))
             except:
@@ -68,26 +67,31 @@ for file in open_files:
 
 
 for tweet in tweets:
-    try: 
-        ids.append(tweet["id_str"])
-        texts.append(tweet["text"])
-        time_created.append(tweet["created_at"])
-        retweet_counts.append(tweet["retweet_count"])
-        in_reply_to_screen_name.append(tweet["in_reply_to_screen_name"])
-        geos.append(tweet["geo"])
-        coordinates.append(tweet["coordinates"])
-        places.append(tweet["place"])
-        # if there is no places data, then return None
-        try:
-            places_country.append(tweet["place"]["country"])
-        except:
-            places_country.append("None")
-        lang.append(tweet["lang"])
-        user_screen_names.append(tweet["user"]["screen_name"])
-        user_followers_count.append(tweet["user"]["followers_count"])
-        user_friends_count.append(tweet["user"]["friends_count"])
-        user_statuses_count.append(tweet["user"]["statuses_count"])
-        user_locations.append(tweet["user"]["statuses_count"])
+    try:
+        # condition for searching through each tweet's status for keywords
+        if re.findall(r'\b(%s)\b' % '|'.join(keywords), tweet["text"].lower()):
+            try: 
+                ids.append(tweet["id_str"])
+                texts.append(tweet["text"])
+                time_created.append(tweet["created_at"])
+                retweet_counts.append(tweet["retweet_count"])
+                in_reply_to_screen_name.append(tweet["in_reply_to_screen_name"])
+                geos.append(tweet["geo"])
+                coordinates.append(tweet["coordinates"])
+                places.append(tweet["place"])
+                # if there is no places data, then return None
+                try:
+                    places_country.append(tweet["place"]["country"])
+                except:
+                    places_country.append("None")
+                lang.append(tweet["lang"])
+                user_screen_names.append(tweet["user"]["screen_name"])
+                user_followers_count.append(tweet["user"]["followers_count"])
+                user_friends_count.append(tweet["user"]["friends_count"])
+                user_statuses_count.append(tweet["user"]["statuses_count"])
+                user_locations.append(tweet["user"]["statuses_count"])
+            except:
+                pass
     except:
         pass
 
