@@ -1,3 +1,5 @@
+import re
+import os
 import json
 from csv import writer
 
@@ -36,15 +38,24 @@ user_statuses_count = []
 # returns free form text; not sure why it only returns numerics
 user_locations = []
 
+# directory that you want to open the json file
+os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
+
 # csv file that you want to save to
-out = open("8may.csv", "w")
+out = open("unfiltered.csv", "ab")
+
+filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json"]
+open_files = map(open, filenames)
 
 # change argument to the file you want to open
-for line in open("8may.json"):
-    try:
-        tweets.append(json.loads(line))
-    except:
-        pass
+for file in open_files:
+    for line in file:
+        # only keep tweets and not the empty lines
+        if line.rstrip():
+            try:
+                tweets.append(json.loads(line))
+            except:
+                pass
 
 for tweet in tweets:
     ids.append(tweet["id_str"])

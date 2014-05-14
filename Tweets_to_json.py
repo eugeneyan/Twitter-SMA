@@ -2,6 +2,7 @@ import sys
 import tweepy
 import json
 import os
+import logging
 
 consumer_key = ""
 consumer_secret = ""
@@ -12,9 +13,15 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 # directory that you want to save the json file
-# os.chdir("C:\Users\Desktop\json_files")
+os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 # name of json file you want to create/open and append json to
+<<<<<<< HEAD
 save_file = open("15may.json", 'a')
+=======
+save_file = open("14may.json", 'a')
+# logging file for errors
+logging.basicConfig(level = logging.DEBUG, filename = "exceptions.txt")
+>>>>>>> 07f3ed46f3470f73671dc401143fc4c44ea97ac5
 
 class CustomStreamListener(tweepy.StreamListener):
     def __init__(self, api):
@@ -26,8 +33,6 @@ class CustomStreamListener(tweepy.StreamListener):
     def on_data(self, tweet):
         # print tweet 
         save_file.write(str(tweet))
-
-        # self.list_of_tweets.append(json.loads(tweet))
 
     def on_error(self, status_code):
         print >> sys.stderr, 'Encountered error with status code:', status_code
@@ -44,10 +49,14 @@ def start_stream():
         try:
             sapi = tweepy.streaming.Stream(auth, CustomStreamListener(api))
             sapi.filter(track=["Samsung", "s4", "s5", "note" "3", "HTC", "Sony", "Xperia", "Blackberry", "q5", "q10", "z10", "Nokia", "Lumia", "Nexus", "LG", "Huawei", "Motorola"])
-        except KeyboardInterrupt: 
+        except KeyboardInterrupt as int: 
+            logging.exception("Error", int)
             break
-        except:
+        except Exception, err:
+            logging.exception("Error", err)
             pass
-
+        except:
+            continue
+            
 start_stream()
 
