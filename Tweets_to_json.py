@@ -15,13 +15,10 @@ api = tweepy.API(auth)
 # directory that you want to save the json file
 os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 # name of json file you want to create/open and append json to
-<<<<<<< HEAD
 save_file = open("15may.json", 'a')
-=======
-save_file = open("14may.json", 'a')
+
 # logging file for errors
 logging.basicConfig(level = logging.DEBUG, filename = "exceptions.txt")
->>>>>>> 07f3ed46f3470f73671dc401143fc4c44ea97ac5
 
 class CustomStreamListener(tweepy.StreamListener):
     def __init__(self, api):
