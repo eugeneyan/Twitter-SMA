@@ -3,8 +3,8 @@ import tweepy
 import json
 import os
 
-consumer_key=""
-consumer_secret=""
+consumer_key = ""
+consumer_secret = ""
 access_key = ""
 access_secret = ""
 
@@ -14,7 +14,7 @@ api = tweepy.API(auth)
 # directory that you want to save the json file
 # os.chdir("C:\Users\Desktop\json_files")
 # name of json file you want to create/open and append json to
-save_file = open("12may.json", 'a')
+save_file = open("15may.json", 'a')
 
 class CustomStreamListener(tweepy.StreamListener):
     def __init__(self, api):
@@ -24,7 +24,7 @@ class CustomStreamListener(tweepy.StreamListener):
         # self.list_of_tweets = []
         
     def on_data(self, tweet):
-        print tweet 
+        # print tweet 
         save_file.write(str(tweet))
 
         # self.list_of_tweets.append(json.loads(tweet))
