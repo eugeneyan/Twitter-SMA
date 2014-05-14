@@ -42,7 +42,7 @@ os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 
 # csv file that you want to save to
 ## change this to the file you want to save
-out = open("test2.csv", "ab")
+out = open("filtered.csv", "ab")
 
 # json file list
 ## change filenames to the files you want to open
