@@ -4,10 +4,10 @@ import json
 import os
 import logging
 
-consumer_key = ""
-consumer_secret = ""
-access_key = ""
-access_secret = ""
+consumer_key="zpC4UdBHiUeadX3vxVYBqFPWx"
+consumer_secret="EkDJ1muPH9NoQL6ZJDT4Moo0XDwKpr6uvHdZhJiYOllCyYn0VU"
+access_key = "2490902144-EE25P4hYrGiemJGuGBrKIKOZNMeY37CP7DZVPEC"
+access_secret = "aVtS1ZCHYVOCuiYhnQmbZf8LDlJ1gTGnmgmEtYf8g5G41"
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
@@ -28,7 +28,7 @@ class CustomStreamListener(tweepy.StreamListener):
         # self.list_of_tweets = []
         
     def on_data(self, tweet):
-        # print tweet 
+        print tweet 
         save_file.write(str(tweet))
 
     def on_error(self, status_code):

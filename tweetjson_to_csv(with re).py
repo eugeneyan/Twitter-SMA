@@ -42,11 +42,11 @@ os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 
 # csv file that you want to save to
 ## change this to the file you want to save
-out = open("filtered.csv", "ab")
+out = open("test.csv", "wb")
 
 # json file list
 ## change filenames to the files you want to open
-filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json"]
+filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json", "14may.json"]
 open_files = map(open, filenames)
 
 # keywords that you want to filter out; note that keywords should be in all lowercase
@@ -54,16 +54,17 @@ open_files = map(open, filenames)
 keywords = ["samsung", "samsung's", "s4", "s4's", "s5", "s5's", "note 3", "note 3's", "htc", "htc's", "sony", "sony's", "xperia", "xperia's", "blackberry", "blackberry's", "q5", "q5's", "q10", "q10's", "z10", "z10's", "nokia", "nokia's", "lumia", "lumia's", "nexus", "nexus'", "nexus's", "huawei", "huawei's", "motorola", "motolora's"]
 
 # iterates though the files and does keyword matching; the tweet is only saved in csv if the tweet["text"] matches the keywords
-for file in open_files:
-    for line in file:
-        # only process lines that are not empty after r.strip
-        if line.rstrip():  # line is not empty after r.strip; same as if line.rstrip() == True
-            try:
-                # condition for searching through each line with keywords
-                if re.findall(r'\b(%s)\b' % '|'.join(keywords), str(line).lower()):
-                    tweets.append(json.loads(line))
-            except:
-                pass
+for filename in filenames:
+    with open(filename) as file:
+        for line in file:
+            # only process lines that are not empty after r.strip
+            if line.rstrip():  # line is not empty after r.strip; same as if line.rstrip() == True
+                try:
+                    # condition for searching through each line with keywords
+                    if re.findall(r'\b(%s)\b' % '|'.join(keywords), str(line).lower()):
+                        tweets.append(json.loads(line))
+                except:
+                    pass
 
 
 for tweet in tweets:
