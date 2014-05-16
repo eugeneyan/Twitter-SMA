@@ -13,7 +13,8 @@ out_file = open("test2.csv", "wb")
 
 # json file list
 ## change filenames to the files you want to open
-filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json", "14may.json"]
+# filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json", "14may.json"]
+filenames = ["8may.json"]
 
 # keywords that you want to filter out; note that keywords should be in all lowercase
 ## change this to the keywords you want to use
@@ -49,7 +50,7 @@ for file in open_files:
                             tweet["user"]["followers_count"], 
                             tweet["user"]["friends_count"], 
                             tweet["user"]["statuses_count"], 
-                            tweet["user"]["statuses_count"])
+                            tweet["user"]["location"])
                         row_utf8 = [(row_utf8.encode('utf8') if hasattr(row_utf8, 'encode') else row_utf8) for row_utf8 in row]
                         csv.writerow(row_utf8)
             except:

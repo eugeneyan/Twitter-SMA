@@ -15,7 +15,7 @@ api = tweepy.API(auth)
 # directory that you want to save the json file
 os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 # name of json file you want to create/open and append json to
-save_file = open("15may.json", 'a')
+save_file = open("16may.json", 'a')
 
 # logging file for errors
 logging.basicConfig(level = logging.DEBUG, filename = "exceptions.txt")
@@ -45,7 +45,7 @@ def start_stream():
     while True:
         try:
             sapi = tweepy.streaming.Stream(auth, CustomStreamListener(api))
-            sapi.filter(track=["Samsung", "s4", "s5", "note" "3", "HTC", "Sony", "Xperia", "Blackberry", "q5", "q10", "z10", "Nokia", "Lumia", "Nexus", "LG", "Huawei", "Motorola"])
+            sapi.filter(track=["Samsung", "s4", "s5", "note" "3", "HTC", "Sony", "Xperia", "Blackberry", "q5", "q10", "z10", "Nokia", "Lumia", "Nexus", "Huawei", "Motorola"])
         except KeyboardInterrupt as int: 
             logging.exception("Error", int)
             break
