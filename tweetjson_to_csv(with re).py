@@ -36,6 +36,8 @@ user_statuses_count = []
 # returns free form text; not sure why it only returns numerics
 user_locations = []
 
+tweets2=[]
+
 # directory that you want to open the json file
 ## change this to the directory you story your files
 os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
@@ -46,7 +48,8 @@ out = open("test.csv", "wb")
 
 # json file list
 ## change filenames to the files you want to open
-filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json", "14may.json"]
+# filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json", "14may.json"]
+filenames = ["8may.json"]
 open_files = map(open, filenames)
 
 # keywords that you want to filter out; note that keywords should be in all lowercase
@@ -59,18 +62,13 @@ for filename in filenames:
         for line in file:
             # only process lines that are not empty after r.strip
             if line.rstrip():  # line is not empty after r.strip; same as if line.rstrip() == True
-                try:
-                    # condition for searching through each line with keywords
-                    if re.findall(r'\b(%s)\b' % '|'.join(keywords), str(line).lower()):
-                        tweets.append(json.loads(line))
-                except:
-                    pass
-
+                tweets.append(json.loads(line))
 
 for tweet in tweets:
     try:
         # condition for searching through each tweet's status for keywords
-        if re.findall(r'\b(%s)\b' % '|'.join(keywords), tweet["text"].lower()):
+        if re.findall(r'\b(%s)\b' % '|'.join(keywords), tweet["text"], re.IGNORECASE):
+            tweets2.append(tweet["text"])
             try: 
                 ids.append(tweet["id_str"])
                 texts.append(tweet["text"])
@@ -90,7 +88,7 @@ for tweet in tweets:
                 user_followers_count.append(tweet["user"]["followers_count"])
                 user_friends_count.append(tweet["user"]["friends_count"])
                 user_statuses_count.append(tweet["user"]["statuses_count"])
-                user_locations.append(tweet["user"]["statuses_count"])
+                user_locations.append(tweet["user"]["location"])
             except:
                 pass
     except:
