@@ -4,16 +4,16 @@ import json
 import os
 import logging
 
-consumer_key="zpC4UdBHiUeadX3vxVYBqFPWx"
-consumer_secret="EkDJ1muPH9NoQL6ZJDT4Moo0XDwKpr6uvHdZhJiYOllCyYn0VU"
-access_key = "2490902144-EE25P4hYrGiemJGuGBrKIKOZNMeY37CP7DZVPEC"
-access_secret = "aVtS1ZCHYVOCuiYhnQmbZf8LDlJ1gTGnmgmEtYf8g5G41"
+consumer_key=""
+consumer_secret=""
+access_key = ""
+access_secret = ""
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 # directory that you want to save the json file
-os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
+# os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 # name of json file you want to create/open and append json to
 save_file = open("16may.json", 'a')
 
