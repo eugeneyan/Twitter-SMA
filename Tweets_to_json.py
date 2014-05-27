@@ -28,7 +28,7 @@ class CustomStreamListener(tweepy.StreamListener):
         # self.list_of_tweets = []
         
     def on_data(self, tweet):
-        print tweet 
+        # print tweet 
         save_file.write(str(tweet))
 
     def on_error(self, status_code):
