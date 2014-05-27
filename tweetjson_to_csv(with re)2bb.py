@@ -9,12 +9,12 @@ os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 
 # csv file that you want to save to
 ## change this to the file you want to save
-out_file = open("tweets2.csv", "wb")
+out_file = open("tweets.csv", "ab")
 
 # json file list
 ## change filenames to the files you want to open
 # filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json", "14may.json"]
-filenames = ["13may.json"]
+filenames = ["24bmay.json"]
 open_files = map(open, filenames)
 
 # keywords that you want to filter out; note that keywords should be in all lowercase
@@ -25,27 +25,24 @@ keywords = ["samsung", "samsung's", "s4", "s4's", "s5", "s5's", "note 3", "note 
 def load_json():
     for file in open_files:
         for line in file:
+            try:
             # condition for searching through each line with keywords
-            if line.rstrip():
-                datum = json.loads(line)
-                yield datum
+                if line.rstrip():
+                    datum = json.loads(line)
+                    yield datum
+            except:
+                pass
                     
 # print header for csv file
 csv = writer(out_file)
-print >> out_file, "ids,text,time_created,retweet_counts,in_reply_to,geos,coordinates,places,language,screen_name,followers,friends,statuses,locations"
+print >> out_file, "text,time_created, language,screen_name,followers,friends,statuses,locations"
 
 for tweet in load_json():
     # condition for searching through each tweet status with keywords
     try:
         if re.findall(r'\b(%s)\b' % '|'.join(keywords), tweet["text"], re.IGNORECASE):
-            row = (tweet["id_str"], 
-                tweet["text"], 
+            row = (tweet["text"], 
                 tweet["created_at"], 
-                tweet["retweet_count"], 
-                tweet["in_reply_to_screen_name"], 
-                tweet["geo"], 
-                tweet["coordinates"], 
-                tweet["place"], 
                 tweet["lang"], 
                 tweet["user"]["screen_name"], 
                 tweet["user"]["followers_count"], 
