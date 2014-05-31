@@ -9,17 +9,17 @@ os.chdir("C:\Users\IBM_ADMIN\Desktop\json_files")
 
 # csv file that you want to save to
 ## change this to the file you want to save
-out_file = open("tweets.csv", "ab")
+out_file = open("test.csv", "wb")
 
 # json file list
 ## change filenames to the files you want to open
 # filenames = ["8may.json", "9may.json", "10may.json", "11may.json", "12may.json", "14may.json"]
-filenames = ["24bmay.json"]
+filenames = ["11mayb.json"]
 open_files = map(open, filenames)
 
 # keywords that you want to filter out; note that keywords should be in all lowercase
 ## change this to the keywords you want to use
-keywords = ["samsung", "samsung's", "s4", "s4's", "s5", "s5's", "note 3", "note 3's", "htc", "htc's", "sony", "sony's", "xperia", "xperia's", "blackberry", "blackberry's", "q5", "q5's", "q10", "q10's", "z10", "z10's", "nokia", "nokia's", "lumia", "lumia's", "nexus", "nexus'", "nexus's", "huawei", "huawei's", "motorola", "motolora's"]
+keywords = ["apple", "apple's", "iphone", "samsung", "samsung's", "s4", "s4's", "s5", "s5's", "note 3", "note 3's", "htc", "htc's", "sony", "sony's", "xperia", "xperia's", "blackberry", "blackberry's", "q5", "q5's", "q10", "q10's", "z10", "z10's", "nokia", "nokia's", "lumia", "lumia's", "nexus", "nexus'", "nexus's", "huawei", "huawei's", "motorola", "motolora's"]
 
 # iterates though the files and does keyword matching; the tweet is only saved in csv if the tweet["text"] matches the keywords
 def load_json():
