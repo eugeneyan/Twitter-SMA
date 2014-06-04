@@ -312,16 +312,16 @@ names(temp) <- c('brand', 'sentiment', 'freq', 'count')
 ggplot(data = tweets, aes(x = brand, fill = factor(sentiment))) + geom_bar(position = 'dodge') + labs(x = "Brands", y = "Number of tweets", fill=guide_legend(title="Sentiment"), size = 20) + theme(axis.text=element_text(size=20), title=element_text(size=20,face="bold"), legend.text=element_text(size=14)) + geom_text(data = temp, aes(x = brand, y = freq, label = sprintf("%.02f %%", freq/count*100)),  position = position_dodge(width = 0.9), vjust=-0.3, size = 4)
 
 # plot ggplot of brand tweets over time
-ggplot(data = tweets, aes(x = time, y = ..count..)) + geom_density(aes(fill = brand), position="stack") + labs(x = "Time", y = "Density", fill=guide_legend(title="Brands"),size = 20) + theme(axis.text=element_text(size=20), title=element_text(size=20,face="bold"), legend.text=element_text(size=14))
+ggplot(data = tweets, aes(x = time, y = ..count..)) + geom_density(aes(fill = brand), position="stack") + labs(x = "Time", y = "Tweet density", fill=guide_legend(title="Brands"),size = 20) + theme(axis.text=element_text(size=20), title=element_text(size=20,face="bold"), legend.text=element_text(size=14))
 
 # plot ggplot boxplot of followers across brands
 ggplot(data = tweets, aes(x = brand, y = followers, fill = brand)) + geom_boxplot() + coord_cartesian(ylim = c(0, 1000))  + labs(x = "Brands", y = "Number of followers", size = 20) + theme(legend.position="none", axis.text=element_text(size=11), axis.title=element_text(size=20,face="bold"))
 
 # plot ggplot boxplot of friends across brands
-ggplot(data = tweets, aes(x = brand, y = friends, fill = brand)) + geom_boxplot() + coord_cartesian(ylim = c(0, 500)) + ylim(0, 1000) + labs(x = "Brands", y = "Number of friends", size = 20) + theme(legend.position="none", axis.text=element_text(size=11), axis.title=element_text(size=20,face="bold"))
+ggplot(data = tweets, aes(x = brand, y = friends, fill = brand)) + geom_boxplot() + coord_cartesian(ylim = c(0, 1000)) + labs(x = "Brands", y = "Number of people followed", size = 20) + theme(legend.position="none", axis.text=element_text(size=11), axis.title=element_text(size=20,face="bold"))
 
 # plot ggplot boxplot of statues across brands
-ggplot(data = tweets, aes(x = brand, y = statuses, fill = brand)) + geom_boxplot() + coord_cartesian(ylim = c(0, 50000)) + labs(x = "Brands", y = "User number of Tweets", size = 20) + theme(legend.position="none", axis.text=element_text(size=11), axis.title=element_text(size=22,face="bold"))
+ggplot(data = tweets, aes(x = brand, y = statuses, fill = brand)) + geom_boxplot() + coord_cartesian(ylim = c(0, 50000)) + labs(x = "Brands", y = "User number of all time tweets", size = 20) + theme(legend.position="none", axis.text=element_text(size=11), axis.title=element_text(size=22,face="bold"))
 
 # ANOVA and TukeyHSD pairwise comparisons for followers across brands
 model1 <- aov(tweets$followers ~ tweets$brand)
@@ -347,7 +347,7 @@ cor.test(tweets$friends, tweets$statuses)
 ggplot(data = tweets, aes(x = followers, y = friends, colour = brand)) + xlim(0, 5000) + ylim(0, 5000) + geom_point(size = 3, alpha = 0.5) + labs(title = "Friends against  (Trial run: Friday 9May, 8am - 9am)", x = "Followers", y = "Friends", fill=guide_legend(title="Brands"), size = 20) + theme(axis.text=element_text(size=20), axis.title=element_text(size=22,face="bold"), title=element_text(size=20,face="bold"), legend.text=element_text(size=14))
 
 # ggplot for statuses against followers
-ggplot(data = tweets, aes(x = followers, y = statuses, colour = brand)) + geom_point(size = 3, alpha = 0.8) + labs(x = "Followers", y = "Statuses", colour=guide_legend(title="Brands"), size = 20) + theme(axis.text=element_text(size=20), axis.title=element_text(size=22,face="bold"), title=element_text(size=20,face="bold"), legend.text=element_text(size=14))
+ggplot(data = tweets, aes(x = followers, y = statuses, colour = brand)) + geom_point(size = 3, alpha = 0.8) + labs(x = "Followers", y = "All time tweets", colour=guide_legend(title="Brands"), size = 20) + theme(axis.text=element_text(size=20), axis.title=element_text(size=22,face="bold"), title=element_text(size=20,face="bold"), legend.text=element_text(size=14))
 
 # ggplot for statuses against friends
 ggplot(data = tweets, aes(x = friends, y = statuses, colour = brand)) + xlim(0, 100000) + ylim(0, 100000) + geom_point(size = 3, alpha = 0.5) + labs(title = "Statuses against Friends (Trial run: Friday 9May, 8am - 9am)", x = "Friends", y = "Statuses", fill=guide_legend(title="Brands"), size = 20) + theme(axis.text=element_text(size=20), axis.title=element_text(size=22,face="bold"), title=element_text(size=20,face="bold"), legend.text=element_text(size=14)) 
