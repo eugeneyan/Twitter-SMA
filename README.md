@@ -4,7 +4,7 @@ Twitter Streaming and Analysis with Python and R
 Introduction
 ------------
 
-The Git repository contains Python and R code for a mini project to analyse tweets on consumer electronic brands.  In the project, 15.3gb of tweets was downloaded from 13 - 25 may using Python and then analysed in R.  A deck on the project is available here: http://www.slideshare.net/eugeneyan/diving-into-twitter-data
+The Git repository contains Python and R code for a mini project to analyse tweets on consumer electronic brands.  In the project, 15.3gb of tweets was downloaded from 13 - 25 may using Python and then analysed in R.  A deck on the project process and outcomes is available here: http://www.slideshare.net/eugeneyan/diving-into-twitter-data
 
 About the scripts
 -----------------
